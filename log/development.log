@@ -1,0 +1,711 @@
+  [1m[36m (1.3ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (0.5ms)[0m  select sqlite_version(*)
+  [1m[36m (1.6ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreatePlanes (20150130224634)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (1.3ms)[0m  CREATE TABLE "planes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "rows" integer, "aisles" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150130224634"]]
+  [1m[35m (1.0ms)[0m  commit transaction
+Migrating to CreateFlights (20150131032839)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "flights" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "flight_number" varchar, "origin" varchar, "destination" varchar, "date" datetime, "plane_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150131032839"]]
+  [1m[35m (0.8ms)[0m  commit transaction
+Migrating to DeviseCreateUsers (20150201102200)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+DEPRECATION WARNING: `#timestamp` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /Users/bencochrane1/ga_WDI7_new/deploy/airline-app/db/migrate/20150201102200_devise_create_users.rb:34)
+  [1m[35m (0.4ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar, "last_sign_in_ip" varchar, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.8ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.5ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+  [1m[36m (0.2ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150201102200"]]
+  [1m[36m (1.2ms)[0m  [1mcommit transaction[0m
+Migrating to CreateReservations (20150201105241)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "reservations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "flight_id" integer, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150201105241"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+
+
+Started GET "/" for ::1 at 2015-02-17 09:41:22 +1100
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 1586ms (Views: 1573.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/flights-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for ::1 at 2015-02-17 09:41:23 +1100
+
+
+Started GET "/assets/planes-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for ::1 at 2015-02-17 09:41:24 +1100
+
+
+Started GET "/assets/normalize-10efdac8d54129dd15a139392fd76d8d.css?body=1" for ::1 at 2015-02-17 09:41:24 +1100
+
+
+Started GET "/assets/passengers-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for ::1 at 2015-02-17 09:41:24 +1100
+
+
+Started GET "/assets/zcustom-da3aa969ff49da28901a74a5711689e7.css?body=1" for ::1 at 2015-02-17 09:41:24 +1100
+
+
+Started GET "/assets/skeleton-a9756c5f5eda5b9e0402f5b8d790272e.css?body=1" for ::1 at 2015-02-17 09:41:24 +1100
+
+
+Started GET "/assets/application-1c16135c8d9cc052e1c170e7cf31a6fc.css?body=1" for ::1 at 2015-02-17 09:41:24 +1100
+
+
+Started GET "/assets/welcome-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for ::1 at 2015-02-17 09:41:24 +1100
+
+
+Started GET "/assets/models/flight-cd4d13440dddbe3e6e974a1e13b31c5e.js?body=1" for ::1 at 2015-02-17 09:41:24 +1100
+
+
+Started GET "/assets/models/plane-5483035a5204518b31b04a63ae9b70e5.js?body=1" for ::1 at 2015-02-17 09:41:24 +1100
+
+
+Started GET "/assets/collections/flights-2483e4830913435bdf68c37454d87956.js?body=1" for ::1 at 2015-02-17 09:41:24 +1100
+
+
+Started GET "/assets/collections/planes-ca4a2856a82560b0bbd5f9513ac02960.js?body=1" for ::1 at 2015-02-17 09:41:24 +1100
+
+
+Started GET "/assets/views/flightView-449ecbb1199f027f1f1a5be49426b7b5.js?body=1" for ::1 at 2015-02-17 09:41:24 +1100
+
+
+Started GET "/assets/views/showFlightView-c4a1d37a5154d92661031551a444f02d.js?body=1" for ::1 at 2015-02-17 09:41:24 +1100
+
+
+Started GET "/assets/views/planesView-0373a174aa141b5d5f2974cebec009ce.js?body=1" for ::1 at 2015-02-17 09:41:24 +1100
+
+
+Started GET "/assets/views/flightsView-9ef4b5dd9fd7534f34ca9e81590098fb.js?body=1" for ::1 at 2015-02-17 09:41:24 +1100
+
+
+Started GET "/assets/templates/flights/create-flight-form-f06409f701744afed4504959da0c4a61.js?body=1" for ::1 at 2015-02-17 09:41:24 +1100
+
+
+Started GET "/assets/templates/flights/app-3ec48ffe5e5d2ac08c37b50adc986763.js?body=1" for ::1 at 2015-02-17 09:41:24 +1100
+
+
+Started GET "/assets/views/planeView-7806261dbb2e01e53b81570d9f376941.js?body=1" for ::1 at 2015-02-17 09:41:24 +1100
+
+
+Started GET "/assets/templates/flights/flight-923d08e51872562d83d5513d9c651cbf.js?body=1" for ::1 at 2015-02-17 09:41:24 +1100
+
+
+Started GET "/assets/templates/flights/show-75c3659139949d53a85802e259ee5c02.js?body=1" for ::1 at 2015-02-17 09:41:24 +1100
+
+
+Started GET "/assets/templates/planes/app-0a718aa8331e3bf3e1370c7e84878e3b.js?body=1" for ::1 at 2015-02-17 09:41:24 +1100
+
+
+Started GET "/assets/templates/planes/create-plane-form-8a3710dab2ed85399aa11c0a7d8a113c.js?body=1" for ::1 at 2015-02-17 09:41:24 +1100
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-02-17 09:41:24 +1100
+
+
+Started GET "/assets/templates/planes/plane-c70e9a7d87a760d48c1081661611ea18.js?body=1" for ::1 at 2015-02-17 09:41:24 +1100
+
+
+Started GET "/assets/handlebars.runtime-897bebc0d17e4ad18219dd45ab94ef2c.js?body=1" for ::1 at 2015-02-17 09:41:24 +1100
+
+
+Started GET "/assets/passengers-46c9a194bd0668e67d57241f94473dc8.js?body=1" for ::1 at 2015-02-17 09:41:24 +1100
+
+
+Started GET "/assets/flights-46c9a194bd0668e67d57241f94473dc8.js?body=1" for ::1 at 2015-02-17 09:41:24 +1100
+
+
+Started GET "/assets/routers/router-3ec24df10873f640167c773f4181830b.js?body=1" for ::1 at 2015-02-17 09:41:24 +1100
+
+
+Started GET "/assets/welcome-46c9a194bd0668e67d57241f94473dc8.js?body=1" for ::1 at 2015-02-17 09:41:24 +1100
+
+
+Started GET "/assets/planes-46c9a194bd0668e67d57241f94473dc8.js?body=1" for ::1 at 2015-02-17 09:41:24 +1100
+
+
+Started GET "/assets/application-fc3e0d1615d5b88226556f0ea1c4b1a4.js?body=1" for ::1 at 2015-02-17 09:41:24 +1100
+
+
+Started GET "/api/planes" for ::1 at 2015-02-17 09:41:24 +1100
+Processing by PlanesController#index as JSON
+  [1m[35mPlane Load (0.6ms)[0m  SELECT "planes".* FROM "planes"
+Completed 200 OK in 14ms (Views: 2.3ms | ActiveRecord: 0.9ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (1.4ms)[0m  [1mINSERT INTO "planes" ("name", "rows", "aisles", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "747"], ["rows", 26], ["aisles", 6], ["created_at", "2015-02-16 22:41:48.445811"], ["updated_at", "2015-02-16 22:41:48.445811"]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "planes" ("name", "rows", "aisles", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "756"], ["rows", 28], ["aisles", 8], ["created_at", "2015-02-16 22:41:48.452805"], ["updated_at", "2015-02-16 22:41:48.452805"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "planes" ("name", "rows", "aisles", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "767"], ["rows", 29], ["aisles", 9], ["created_at", "2015-02-16 22:41:48.455394"], ["updated_at", "2015-02-16 22:41:48.455394"]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "planes" ("name", "rows", "aisles", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "789"], ["rows", 22], ["aisles", 6], ["created_at", "2015-02-16 22:41:48.457880"], ["updated_at", "2015-02-16 22:41:48.457880"]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "planes" ("name", "rows", "aisles", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "348"], ["rows", 24], ["aisles", 4], ["created_at", "2015-02-16 22:41:48.460455"], ["updated_at", "2015-02-16 22:41:48.460455"]]
+  [1m[35m (0.9ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.8ms)[0m  INSERT INTO "flights" ("flight_number", "origin", "destination", "plane_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["flight_number", "JQ123"], ["origin", "SYD"], ["destination", "LA"], ["plane_id", 1], ["created_at", "2015-02-16 22:41:48.477549"], ["updated_at", "2015-02-16 22:41:48.477549"]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "flights" ("flight_number", "origin", "destination", "plane_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["flight_number", "FQ123"], ["origin", "LA"], ["destination", "BUL"], ["plane_id", 2], ["created_at", "2015-02-16 22:41:48.481499"], ["updated_at", "2015-02-16 22:41:48.481499"]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "flights" ("flight_number", "origin", "destination", "plane_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["flight_number", "KQ123"], ["origin", "HK"], ["destination", "SIN"], ["plane_id", 3], ["created_at", "2015-02-16 22:41:48.484266"], ["updated_at", "2015-02-16 22:41:48.484266"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "flights" ("flight_number", "origin", "destination", "plane_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["flight_number", "TQ123"], ["origin", "LON"], ["destination", "CHINA"], ["plane_id", 4], ["created_at", "2015-02-16 22:41:48.486930"], ["updated_at", "2015-02-16 22:41:48.486930"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "flights" ("flight_number", "origin", "destination", "plane_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["flight_number", "TQ123"], ["origin", "LON"], ["destination", "CHINA"], ["plane_id", 5], ["created_at", "2015-02-16 22:41:48.489955"], ["updated_at", "2015-02-16 22:41:48.489955"]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+
+
+Started GET "/" for ::1 at 2015-02-17 09:41:54 +1100
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 327ms (Views: 315.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/flights-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for ::1 at 2015-02-17 09:41:54 +1100
+
+
+Started GET "/assets/normalize-10efdac8d54129dd15a139392fd76d8d.css?body=1" for ::1 at 2015-02-17 09:41:54 +1100
+
+
+Started GET "/assets/planes-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for ::1 at 2015-02-17 09:41:54 +1100
+
+
+Started GET "/assets/passengers-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for ::1 at 2015-02-17 09:41:54 +1100
+
+
+Started GET "/assets/skeleton-a9756c5f5eda5b9e0402f5b8d790272e.css?body=1" for ::1 at 2015-02-17 09:41:54 +1100
+
+
+Started GET "/assets/welcome-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for ::1 at 2015-02-17 09:41:54 +1100
+
+
+Started GET "/assets/zcustom-da3aa969ff49da28901a74a5711689e7.css?body=1" for ::1 at 2015-02-17 09:41:54 +1100
+
+
+Started GET "/assets/application-1c16135c8d9cc052e1c170e7cf31a6fc.css?body=1" for ::1 at 2015-02-17 09:41:54 +1100
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-02-17 09:41:54 +1100
+
+
+Started GET "/assets/handlebars.runtime-897bebc0d17e4ad18219dd45ab94ef2c.js?body=1" for ::1 at 2015-02-17 09:41:54 +1100
+
+
+Started GET "/assets/models/flight-cd4d13440dddbe3e6e974a1e13b31c5e.js?body=1" for ::1 at 2015-02-17 09:41:54 +1100
+
+
+Started GET "/assets/models/plane-5483035a5204518b31b04a63ae9b70e5.js?body=1" for ::1 at 2015-02-17 09:41:54 +1100
+
+
+Started GET "/assets/collections/flights-2483e4830913435bdf68c37454d87956.js?body=1" for ::1 at 2015-02-17 09:41:54 +1100
+
+
+Started GET "/assets/collections/planes-ca4a2856a82560b0bbd5f9513ac02960.js?body=1" for ::1 at 2015-02-17 09:41:54 +1100
+
+
+Started GET "/assets/views/flightView-449ecbb1199f027f1f1a5be49426b7b5.js?body=1" for ::1 at 2015-02-17 09:41:54 +1100
+
+
+Started GET "/assets/views/flightsView-9ef4b5dd9fd7534f34ca9e81590098fb.js?body=1" for ::1 at 2015-02-17 09:41:54 +1100
+
+
+Started GET "/assets/views/planeView-7806261dbb2e01e53b81570d9f376941.js?body=1" for ::1 at 2015-02-17 09:41:54 +1100
+
+
+Started GET "/assets/views/planesView-0373a174aa141b5d5f2974cebec009ce.js?body=1" for ::1 at 2015-02-17 09:41:54 +1100
+
+
+Started GET "/assets/views/showFlightView-c4a1d37a5154d92661031551a444f02d.js?body=1" for ::1 at 2015-02-17 09:41:54 +1100
+
+
+Started GET "/assets/templates/flights/app-3ec48ffe5e5d2ac08c37b50adc986763.js?body=1" for ::1 at 2015-02-17 09:41:54 +1100
+
+
+Started GET "/assets/templates/flights/create-flight-form-f06409f701744afed4504959da0c4a61.js?body=1" for ::1 at 2015-02-17 09:41:54 +1100
+
+
+Started GET "/assets/templates/flights/flight-923d08e51872562d83d5513d9c651cbf.js?body=1" for ::1 at 2015-02-17 09:41:54 +1100
+
+
+Started GET "/assets/templates/flights/show-75c3659139949d53a85802e259ee5c02.js?body=1" for ::1 at 2015-02-17 09:41:55 +1100
+
+
+Started GET "/assets/templates/planes/app-0a718aa8331e3bf3e1370c7e84878e3b.js?body=1" for ::1 at 2015-02-17 09:41:55 +1100
+
+
+Started GET "/assets/templates/planes/create-plane-form-8a3710dab2ed85399aa11c0a7d8a113c.js?body=1" for ::1 at 2015-02-17 09:41:55 +1100
+
+
+Started GET "/assets/templates/planes/plane-c70e9a7d87a760d48c1081661611ea18.js?body=1" for ::1 at 2015-02-17 09:41:55 +1100
+
+
+Started GET "/assets/routers/router-3ec24df10873f640167c773f4181830b.js?body=1" for ::1 at 2015-02-17 09:41:55 +1100
+
+
+Started GET "/assets/flights-46c9a194bd0668e67d57241f94473dc8.js?body=1" for ::1 at 2015-02-17 09:41:55 +1100
+
+
+Started GET "/assets/passengers-46c9a194bd0668e67d57241f94473dc8.js?body=1" for ::1 at 2015-02-17 09:41:55 +1100
+
+
+Started GET "/assets/planes-46c9a194bd0668e67d57241f94473dc8.js?body=1" for ::1 at 2015-02-17 09:41:55 +1100
+
+
+Started GET "/assets/welcome-46c9a194bd0668e67d57241f94473dc8.js?body=1" for ::1 at 2015-02-17 09:41:55 +1100
+
+
+Started GET "/assets/application-fc3e0d1615d5b88226556f0ea1c4b1a4.js?body=1" for ::1 at 2015-02-17 09:41:55 +1100
+
+
+Started GET "/api/planes" for ::1 at 2015-02-17 09:41:55 +1100
+Processing by PlanesController#index as JSON
+  [1m[35mPlane Load (0.2ms)[0m  SELECT "planes".* FROM "planes"
+Completed 200 OK in 15ms (Views: 8.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/flights" for ::1 at 2015-02-17 09:41:59 +1100
+Processing by FlightsController#index as JSON
+  [1m[36mFlight Load (0.2ms)[0m  [1mSELECT "flights".* FROM "flights"[0m
+Completed 200 OK in 22ms (Views: 7.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/flights" for ::1 at 2015-02-17 09:42:00 +1100
+Processing by FlightsController#index as JSON
+  [1m[35mFlight Load (0.5ms)[0m  SELECT "flights".* FROM "flights"
+Completed 200 OK in 8ms (Views: 6.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/planes" for ::1 at 2015-02-17 09:42:00 +1100
+Processing by PlanesController#index as JSON
+  [1m[36mPlane Load (0.2ms)[0m  [1mSELECT "planes".* FROM "planes"[0m
+Completed 200 OK in 3ms (Views: 2.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2016-05-11 15:21:23 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (13.5ms)
+Completed 200 OK in 526ms (Views: 493.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/flights-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2016-05-11 15:21:23 +0530
+
+
+Started GET "/assets/normalize-10efdac8d54129dd15a139392fd76d8d.css?body=1" for 127.0.0.1 at 2016-05-11 15:21:24 +0530
+
+
+Started GET "/assets/passengers-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2016-05-11 15:21:24 +0530
+
+
+Started GET "/assets/planes-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2016-05-11 15:21:24 +0530
+
+
+Started GET "/assets/welcome-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2016-05-11 15:21:24 +0530
+
+
+Started GET "/assets/zcustom-da3aa969ff49da28901a74a5711689e7.css?body=1" for 127.0.0.1 at 2016-05-11 15:21:24 +0530
+
+
+Started GET "/assets/skeleton-a9756c5f5eda5b9e0402f5b8d790272e.css?body=1" for 127.0.0.1 at 2016-05-11 15:21:24 +0530
+
+
+Started GET "/assets/application-1c16135c8d9cc052e1c170e7cf31a6fc.css?body=1" for 127.0.0.1 at 2016-05-11 15:21:24 +0530
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for 127.0.0.1 at 2016-05-11 15:21:24 +0530
+
+
+Started GET "/assets/handlebars.runtime-897bebc0d17e4ad18219dd45ab94ef2c.js?body=1" for 127.0.0.1 at 2016-05-11 15:21:24 +0530
+
+
+Started GET "/assets/models/plane-5483035a5204518b31b04a63ae9b70e5.js?body=1" for 127.0.0.1 at 2016-05-11 15:21:24 +0530
+
+
+Started GET "/assets/collections/flights-2483e4830913435bdf68c37454d87956.js?body=1" for 127.0.0.1 at 2016-05-11 15:21:24 +0530
+
+
+Started GET "/assets/models/flight-cd4d13440dddbe3e6e974a1e13b31c5e.js?body=1" for 127.0.0.1 at 2016-05-11 15:21:24 +0530
+
+
+Started GET "/assets/collections/planes-ca4a2856a82560b0bbd5f9513ac02960.js?body=1" for 127.0.0.1 at 2016-05-11 15:21:24 +0530
+
+
+Started GET "/assets/views/flightView-449ecbb1199f027f1f1a5be49426b7b5.js?body=1" for 127.0.0.1 at 2016-05-11 15:21:24 +0530
+
+
+Started GET "/assets/views/flightsView-9ef4b5dd9fd7534f34ca9e81590098fb.js?body=1" for 127.0.0.1 at 2016-05-11 15:21:24 +0530
+
+
+Started GET "/assets/views/planeView-7806261dbb2e01e53b81570d9f376941.js?body=1" for 127.0.0.1 at 2016-05-11 15:21:24 +0530
+
+
+Started GET "/assets/views/planesView-0373a174aa141b5d5f2974cebec009ce.js?body=1" for 127.0.0.1 at 2016-05-11 15:21:24 +0530
+
+
+Started GET "/assets/views/showFlightView-c4a1d37a5154d92661031551a444f02d.js?body=1" for 127.0.0.1 at 2016-05-11 15:21:24 +0530
+
+
+Started GET "/assets/templates/flights/app-3ec48ffe5e5d2ac08c37b50adc986763.js?body=1" for 127.0.0.1 at 2016-05-11 15:21:24 +0530
+
+
+Started GET "/assets/templates/flights/create-flight-form-f06409f701744afed4504959da0c4a61.js?body=1" for 127.0.0.1 at 2016-05-11 15:21:24 +0530
+
+
+Started GET "/assets/templates/flights/flight-923d08e51872562d83d5513d9c651cbf.js?body=1" for 127.0.0.1 at 2016-05-11 15:21:24 +0530
+
+
+Started GET "/assets/templates/flights/show-75c3659139949d53a85802e259ee5c02.js?body=1" for 127.0.0.1 at 2016-05-11 15:21:24 +0530
+
+
+Started GET "/assets/templates/planes/app-0a718aa8331e3bf3e1370c7e84878e3b.js?body=1" for 127.0.0.1 at 2016-05-11 15:21:24 +0530
+
+
+Started GET "/assets/templates/planes/create-plane-form-8a3710dab2ed85399aa11c0a7d8a113c.js?body=1" for 127.0.0.1 at 2016-05-11 15:21:24 +0530
+
+
+Started GET "/assets/templates/planes/plane-c70e9a7d87a760d48c1081661611ea18.js?body=1" for 127.0.0.1 at 2016-05-11 15:21:24 +0530
+
+
+Started GET "/assets/flights-46c9a194bd0668e67d57241f94473dc8.js?body=1" for 127.0.0.1 at 2016-05-11 15:21:24 +0530
+
+
+Started GET "/assets/passengers-46c9a194bd0668e67d57241f94473dc8.js?body=1" for 127.0.0.1 at 2016-05-11 15:21:24 +0530
+
+
+Started GET "/assets/routers/router-3ec24df10873f640167c773f4181830b.js?body=1" for 127.0.0.1 at 2016-05-11 15:21:24 +0530
+
+
+Started GET "/assets/planes-46c9a194bd0668e67d57241f94473dc8.js?body=1" for 127.0.0.1 at 2016-05-11 15:21:24 +0530
+
+
+Started GET "/assets/welcome-46c9a194bd0668e67d57241f94473dc8.js?body=1" for 127.0.0.1 at 2016-05-11 15:21:24 +0530
+
+
+Started GET "/assets/application-fc3e0d1615d5b88226556f0ea1c4b1a4.js?body=1" for 127.0.0.1 at 2016-05-11 15:21:24 +0530
+
+
+Started GET "/api/planes" for 127.0.0.1 at 2016-05-11 15:21:24 +0530
+Processing by PlanesController#index as JSON
+  [1m[35mPlane Load (0.3ms)[0m  SELECT "planes".* FROM "planes"
+Completed 200 OK in 24ms (Views: 13.6ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2016-05-11 15:21:47 +0530
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 272ms (Views: 270.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/planes" for 127.0.0.1 at 2016-05-11 15:21:48 +0530
+Processing by PlanesController#index as JSON
+  [1m[36mPlane Load (0.3ms)[0m  [1mSELECT "planes".* FROM "planes"[0m
+Completed 200 OK in 6ms (Views: 4.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/planes" for 127.0.0.1 at 2016-05-11 15:21:52 +0530
+Processing by PlanesController#index as JSON
+  [1m[35mPlane Load (0.3ms)[0m  SELECT "planes".* FROM "planes"
+Completed 200 OK in 5ms (Views: 3.9ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/api/planes" for 127.0.0.1 at 2016-05-11 15:22:10 +0530
+Processing by PlanesController#create as JSON
+  Parameters: {"name"=>"345", "rows"=>"25", "aisles"=>"6", "seats"=>150, "plane"=>{"name"=>"345", "rows"=>"25", "aisles"=>"6"}}
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "planes" ("name", "rows", "aisles", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "345"], ["rows", 25], ["aisles", 6], ["created_at", "2016-05-11 09:52:10.541707"], ["updated_at", "2016-05-11 09:52:10.541707"]]
+  [1m[36m (128.3ms)[0m  [1mcommit transaction[0m
+Completed 200 OK in 242ms (Views: 0.7ms | ActiveRecord: 129.0ms)
+
+
+Started GET "/api/planes" for 127.0.0.1 at 2016-05-11 15:22:14 +0530
+Processing by PlanesController#index as JSON
+  [1m[35mPlane Load (0.6ms)[0m  SELECT "planes".* FROM "planes"
+Completed 200 OK in 10ms (Views: 9.0ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/flights" for 127.0.0.1 at 2016-05-11 15:22:21 +0530
+Processing by FlightsController#index as JSON
+  [1m[36mFlight Load (0.3ms)[0m  [1mSELECT "flights".* FROM "flights"[0m
+Completed 200 OK in 36ms (Views: 11.4ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/api/flights" for 127.0.0.1 at 2016-05-11 15:24:29 +0530
+Processing by FlightsController#create as JSON
+  Parameters: {"flight_number"=>"tp231", "date"=>"2014-06-17", "origin"=>"bhubneswar", "destination"=>"banglore", "plane_id"=>"3", "flight"=>{"flight_number"=>"tp231", "origin"=>"bhubneswar", "destination"=>"banglore", "date"=>"2014-06-17", "plane_id"=>"3"}}
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "flights" ("flight_number", "origin", "destination", "date", "plane_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["flight_number", "tp231"], ["origin", "bhubneswar"], ["destination", "banglore"], ["date", "2014-06-17 00:00:00.000000"], ["plane_id", 3], ["created_at", "2016-05-11 09:54:29.705654"], ["updated_at", "2016-05-11 09:54:29.705654"]]
+  [1m[35m (224.9ms)[0m  commit transaction
+Completed 200 OK in 233ms (Views: 0.6ms | ActiveRecord: 225.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2016-05-12 09:45:14 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (14.9ms)
+Completed 200 OK in 767ms (Views: 736.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/flights-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2016-05-12 09:45:15 +0530
+
+
+Started GET "/assets/welcome-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2016-05-12 09:45:15 +0530
+
+
+Started GET "/assets/skeleton-a9756c5f5eda5b9e0402f5b8d790272e.css?body=1" for 127.0.0.1 at 2016-05-12 09:45:15 +0530
+
+
+Started GET "/assets/planes-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2016-05-12 09:45:15 +0530
+
+
+Started GET "/assets/passengers-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2016-05-12 09:45:15 +0530
+
+
+Started GET "/assets/normalize-10efdac8d54129dd15a139392fd76d8d.css?body=1" for 127.0.0.1 at 2016-05-12 09:45:15 +0530
+
+
+Started GET "/assets/zcustom-da3aa969ff49da28901a74a5711689e7.css?body=1" for 127.0.0.1 at 2016-05-12 09:45:15 +0530
+
+
+Started GET "/assets/application-1c16135c8d9cc052e1c170e7cf31a6fc.css?body=1" for 127.0.0.1 at 2016-05-12 09:45:15 +0530
+
+
+Started GET "/assets/models/flight-cd4d13440dddbe3e6e974a1e13b31c5e.js?body=1" for 127.0.0.1 at 2016-05-12 09:45:15 +0530
+
+
+Started GET "/assets/models/plane-5483035a5204518b31b04a63ae9b70e5.js?body=1" for 127.0.0.1 at 2016-05-12 09:45:15 +0530
+
+
+Started GET "/assets/collections/flights-2483e4830913435bdf68c37454d87956.js?body=1" for 127.0.0.1 at 2016-05-12 09:45:15 +0530
+
+
+Started GET "/assets/collections/planes-ca4a2856a82560b0bbd5f9513ac02960.js?body=1" for 127.0.0.1 at 2016-05-12 09:45:15 +0530
+
+
+Started GET "/assets/views/flightView-449ecbb1199f027f1f1a5be49426b7b5.js?body=1" for 127.0.0.1 at 2016-05-12 09:45:15 +0530
+
+
+Started GET "/assets/views/planeView-7806261dbb2e01e53b81570d9f376941.js?body=1" for 127.0.0.1 at 2016-05-12 09:45:15 +0530
+
+
+Started GET "/assets/flights-46c9a194bd0668e67d57241f94473dc8.js?body=1" for 127.0.0.1 at 2016-05-12 09:45:15 +0530
+
+
+Started GET "/assets/templates/planes/create-plane-form-8a3710dab2ed85399aa11c0a7d8a113c.js?body=1" for 127.0.0.1 at 2016-05-12 09:45:15 +0530
+
+
+Started GET "/assets/templates/planes/app-0a718aa8331e3bf3e1370c7e84878e3b.js?body=1" for 127.0.0.1 at 2016-05-12 09:45:15 +0530
+
+
+Started GET "/assets/passengers-46c9a194bd0668e67d57241f94473dc8.js?body=1" for 127.0.0.1 at 2016-05-12 09:45:15 +0530
+
+
+Started GET "/assets/planes-46c9a194bd0668e67d57241f94473dc8.js?body=1" for 127.0.0.1 at 2016-05-12 09:45:15 +0530
+
+
+Started GET "/assets/application-fc3e0d1615d5b88226556f0ea1c4b1a4.js?body=1" for 127.0.0.1 at 2016-05-12 09:45:15 +0530
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for 127.0.0.1 at 2016-05-12 09:45:15 +0530
+
+
+Started GET "/assets/handlebars.runtime-897bebc0d17e4ad18219dd45ab94ef2c.js?body=1" for 127.0.0.1 at 2016-05-12 09:45:15 +0530
+
+
+Started GET "/assets/views/flightsView-9ef4b5dd9fd7534f34ca9e81590098fb.js?body=1" for 127.0.0.1 at 2016-05-12 09:45:15 +0530
+
+
+Started GET "/assets/views/planesView-0373a174aa141b5d5f2974cebec009ce.js?body=1" for 127.0.0.1 at 2016-05-12 09:45:15 +0530
+
+
+Started GET "/assets/welcome-46c9a194bd0668e67d57241f94473dc8.js?body=1" for 127.0.0.1 at 2016-05-12 09:45:15 +0530
+
+
+Started GET "/assets/views/showFlightView-c4a1d37a5154d92661031551a444f02d.js?body=1" for 127.0.0.1 at 2016-05-12 09:45:15 +0530
+
+
+Started GET "/assets/templates/flights/app-3ec48ffe5e5d2ac08c37b50adc986763.js?body=1" for 127.0.0.1 at 2016-05-12 09:45:15 +0530
+
+
+Started GET "/assets/templates/flights/create-flight-form-f06409f701744afed4504959da0c4a61.js?body=1" for 127.0.0.1 at 2016-05-12 09:45:15 +0530
+
+
+Started GET "/assets/templates/flights/show-75c3659139949d53a85802e259ee5c02.js?body=1" for 127.0.0.1 at 2016-05-12 09:45:15 +0530
+
+
+Started GET "/assets/templates/flights/flight-923d08e51872562d83d5513d9c651cbf.js?body=1" for 127.0.0.1 at 2016-05-12 09:45:15 +0530
+
+
+Started GET "/assets/templates/planes/plane-c70e9a7d87a760d48c1081661611ea18.js?body=1" for 127.0.0.1 at 2016-05-12 09:45:15 +0530
+
+
+Started GET "/assets/routers/router-3ec24df10873f640167c773f4181830b.js?body=1" for 127.0.0.1 at 2016-05-12 09:45:15 +0530
+
+
+Started GET "/api/planes" for 127.0.0.1 at 2016-05-12 09:45:15 +0530
+Processing by PlanesController#index as JSON
+  [1m[35mPlane Load (0.3ms)[0m  SELECT "planes".* FROM "planes"
+Completed 200 OK in 25ms (Views: 8.5ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2016-05-12 09:49:06 +0530
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 253ms (Views: 252.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/normalize-10efdac8d54129dd15a139392fd76d8d.css?body=1" for 127.0.0.1 at 2016-05-12 09:49:06 +0530
+
+
+Started GET "/assets/planes-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2016-05-12 09:49:06 +0530
+
+
+Started GET "/assets/skeleton-a9756c5f5eda5b9e0402f5b8d790272e.css?body=1" for 127.0.0.1 at 2016-05-12 09:49:06 +0530
+
+
+Started GET "/assets/flights-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2016-05-12 09:49:06 +0530
+
+
+Started GET "/assets/passengers-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2016-05-12 09:49:06 +0530
+
+
+Started GET "/assets/welcome-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2016-05-12 09:49:06 +0530
+
+
+Started GET "/assets/zcustom-da3aa969ff49da28901a74a5711689e7.css?body=1" for 127.0.0.1 at 2016-05-12 09:49:06 +0530
+
+
+Started GET "/assets/application-1c16135c8d9cc052e1c170e7cf31a6fc.css?body=1" for 127.0.0.1 at 2016-05-12 09:49:06 +0530
+
+
+Started GET "/assets/handlebars.runtime-897bebc0d17e4ad18219dd45ab94ef2c.js?body=1" for 127.0.0.1 at 2016-05-12 09:49:06 +0530
+
+
+Started GET "/assets/models/plane-5483035a5204518b31b04a63ae9b70e5.js?body=1" for 127.0.0.1 at 2016-05-12 09:49:06 +0530
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for 127.0.0.1 at 2016-05-12 09:49:06 +0530
+
+
+Started GET "/assets/models/flight-cd4d13440dddbe3e6e974a1e13b31c5e.js?body=1" for 127.0.0.1 at 2016-05-12 09:49:06 +0530
+
+
+Started GET "/assets/collections/flights-2483e4830913435bdf68c37454d87956.js?body=1" for 127.0.0.1 at 2016-05-12 09:49:06 +0530
+
+
+Started GET "/assets/collections/planes-ca4a2856a82560b0bbd5f9513ac02960.js?body=1" for 127.0.0.1 at 2016-05-12 09:49:06 +0530
+
+
+Started GET "/assets/views/flightView-449ecbb1199f027f1f1a5be49426b7b5.js?body=1" for 127.0.0.1 at 2016-05-12 09:49:06 +0530
+
+
+Started GET "/assets/views/planeView-7806261dbb2e01e53b81570d9f376941.js?body=1" for 127.0.0.1 at 2016-05-12 09:49:06 +0530
+
+
+Started GET "/assets/views/planesView-0373a174aa141b5d5f2974cebec009ce.js?body=1" for 127.0.0.1 at 2016-05-12 09:49:06 +0530
+
+
+Started GET "/assets/templates/flights/app-3ec48ffe5e5d2ac08c37b50adc986763.js?body=1" for 127.0.0.1 at 2016-05-12 09:49:06 +0530
+
+
+Started GET "/assets/views/showFlightView-c4a1d37a5154d92661031551a444f02d.js?body=1" for 127.0.0.1 at 2016-05-12 09:49:06 +0530
+
+
+Started GET "/assets/templates/flights/create-flight-form-f06409f701744afed4504959da0c4a61.js?body=1" for 127.0.0.1 at 2016-05-12 09:49:06 +0530
+
+
+Started GET "/assets/views/flightsView-9ef4b5dd9fd7534f34ca9e81590098fb.js?body=1" for 127.0.0.1 at 2016-05-12 09:49:06 +0530
+
+
+Started GET "/assets/templates/flights/show-75c3659139949d53a85802e259ee5c02.js?body=1" for 127.0.0.1 at 2016-05-12 09:49:06 +0530
+
+
+Started GET "/assets/templates/flights/flight-923d08e51872562d83d5513d9c651cbf.js?body=1" for 127.0.0.1 at 2016-05-12 09:49:06 +0530
+
+
+Started GET "/assets/templates/planes/app-0a718aa8331e3bf3e1370c7e84878e3b.js?body=1" for 127.0.0.1 at 2016-05-12 09:49:06 +0530
+
+
+Started GET "/assets/templates/planes/create-plane-form-8a3710dab2ed85399aa11c0a7d8a113c.js?body=1" for 127.0.0.1 at 2016-05-12 09:49:06 +0530
+
+
+Started GET "/assets/templates/planes/plane-c70e9a7d87a760d48c1081661611ea18.js?body=1" for 127.0.0.1 at 2016-05-12 09:49:06 +0530
+
+
+Started GET "/assets/routers/router-3ec24df10873f640167c773f4181830b.js?body=1" for 127.0.0.1 at 2016-05-12 09:49:06 +0530
+
+
+Started GET "/assets/flights-46c9a194bd0668e67d57241f94473dc8.js?body=1" for 127.0.0.1 at 2016-05-12 09:49:06 +0530
+
+
+Started GET "/assets/passengers-46c9a194bd0668e67d57241f94473dc8.js?body=1" for 127.0.0.1 at 2016-05-12 09:49:06 +0530
+
+
+Started GET "/assets/planes-46c9a194bd0668e67d57241f94473dc8.js?body=1" for 127.0.0.1 at 2016-05-12 09:49:06 +0530
+
+
+Started GET "/assets/welcome-46c9a194bd0668e67d57241f94473dc8.js?body=1" for 127.0.0.1 at 2016-05-12 09:49:06 +0530
+
+
+Started GET "/assets/application-fc3e0d1615d5b88226556f0ea1c4b1a4.js?body=1" for 127.0.0.1 at 2016-05-12 09:49:06 +0530
+
+
+Started GET "/api/planes" for 127.0.0.1 at 2016-05-12 09:49:06 +0530
+Processing by PlanesController#index as JSON
+  [1m[36mPlane Load (0.3ms)[0m  [1mSELECT "planes".* FROM "planes"[0m
+Completed 200 OK in 5ms (Views: 3.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/flights" for 127.0.0.1 at 2016-05-12 11:46:05 +0530
+Processing by FlightsController#index as JSON
+  [1m[35mFlight Load (21.1ms)[0m  SELECT "flights".* FROM "flights"
+Completed 200 OK in 115ms (Views: 10.9ms | ActiveRecord: 21.4ms)
+
+
+Started GET "/api/planes" for 127.0.0.1 at 2016-05-12 11:46:28 +0530
+Processing by PlanesController#index as JSON
+  [1m[36mPlane Load (0.3ms)[0m  [1mSELECT "planes".* FROM "planes"[0m
+Completed 200 OK in 6ms (Views: 4.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/flights" for 127.0.0.1 at 2016-05-12 11:46:30 +0530
+Processing by FlightsController#index as JSON
+  [1m[35mFlight Load (0.3ms)[0m  SELECT "flights".* FROM "flights"
+Completed 200 OK in 8ms (Views: 5.1ms | ActiveRecord: 0.3ms)
